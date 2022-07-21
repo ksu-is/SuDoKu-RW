@@ -1,1 +1,27 @@
 Project Road Map
+
+7/14: Create ReadMe File.
+      -Watching youtube Sudoku Solver Python Video
+      (https://www.youtube.com/watch?v=PZJ5mjQyxR8&t=10s)
+      
+7/16: Found GitHub search with multiple Sudoku solvers.
+      Some were to simple, but others were very difficult. Hoping to find one that challenges without being too extensive.
+      May need to combine projects together
+      Link: https://www.bing.com/search?q=github+sudoku&cvid=7ddb27e63349481189a3f9637466a2d1&aqs=edge.1.69i65j69i59j69i57j46j0l2j69i60l3.3507j0j4&FORM=ANAB01&PC=HCTS
+      
+7/18: RoadMap File created:
+      Added work that has already been done. 
+      Created timeline for remained of the project. Hoping to get all coding down by 7/23. So i can completed powerpoint presentations
+      
+7/19: Found starter Python Solver with step by step instructions. Combining with one other python solver:
+      links: https://projectgurukul.org/create-sudoku-game-python/
+      links: https://lvngd.com/blog/generating-and-solving-sudoku-puzzles-python/
+      links: https://www.alicehuacal.com/project/sudoku-python-game/
+      
+7/20: Added more detail to ReadMe.MD File
+      -Trouble shooting the pip install for pygame and requests in sudoke tester code
+       -Found Resolution to pygame install (used:https://www.dev2qa.com/how-to-install-python-pygame-module-correctly/#:~:text=Install%20Python%20Pygame%20Module%20Use%20The%20Binary%20Installer,the%20Pygame%20installer%20downloaded%20directory.%20More%20items...%20)
+      -Still working on resolution for requests. May need to change to interpreter that will work for both.
+7/22:
+7/23:
+7/24:
