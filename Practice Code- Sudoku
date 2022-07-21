@@ -1,0 +1,16 @@
+##Sudoku Roz Wright
+import pygame
+import requests
+ ##Even after importing requests into terminal still giving me an error##
+ 
+ 
+resp = requests.get("https://sugoku.herokuapp.com/board?difficulty=easy")
+ 
+board =  resp.json()['board']
+ 
+#making a copy of the board beacuse we will be changing the values of the board
+#  so at last it will help in checking the correctness
+original = [[board[i][j] for j in range(len(board[0]))] for i in range(len(board))]
+ 
+bg_color = (250,245,243)
+black = (0,0,0)
