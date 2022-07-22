@@ -22,6 +22,24 @@ Project Road Map
       -Trouble shooting the pip install for pygame and requests in sudoke tester code
        -Found Resolution to pygame install (used:https://www.dev2qa.com/how-to-install-python-pygame-module-correctly/#:~:text=Install%20Python%20Pygame%20Module%20Use%20The%20Binary%20Installer,the%20Pygame%20installer%20downloaded%20directory.%20More%20items...%20)
       -Still working on resolution for requests. May need to change to interpreter that will work for both.
-7/22:
+7/22: Found Resolution to Request imports (Check notes in Practice SuDoKu code file)
+      Finished the code for game file. Still need to complete the solver.py file. But I feel confident that I will completed it. Today I made quite a few changes from the tutorial that I have been follwoing
+      1. Find a website to find the pygame color format for the board layout
+            -used https://python-forum.io/thread-1525.html#:~:text=blue%20%3D%20%28%280%2C0%2C255%29%29%20green%20%3D%20%28%280%2C255%2C0%29%29,red%20%3D%20%28%28255%2C0%2C0%29%29%20black%20%3D%20%28%280%2C0%2C0%29%29
+      2.Adjsuted code to account for collor changes
+            -Went thoruhg all lines and added the color that I wanted. I chose marron     
+            -All of the tutorial only used black but I want it to be fun. My favorite color is green specfically matcha green. But there was someone else doing green.
+      3. Find website to adjust font for pygame.
+            -used https://coderslegacy.com/python/pygame-font/
+      4. Adjusted code to account for new font.
+      5. Found a total of 3 errors in my game() function
+                 - forgot 2nd set of paratheseeses for window variable
+                 -      incorrect indents in while loop
+                              had more than one, but the indents is still something I have a hard time following.
+                 -place function error in formating. Had to google proper formatting t use place. 
+                        figured it out though. needed commas and I mispelled a variable.
+      6. Checked code for errors again, and began planning the solver portion.
+            Created python file, and new file in github. 
+            Found tutorials on solver code. May refer to orginal video followed so i can follow if I make errors. 
 7/23:
 7/24:
