@@ -1,14 +1,94 @@
 ##Sudoku Roz Wright
 import pygame
 import requests
- ##Even after importing requests into terminal still giving me an error##
- 
  
 resp = requests.get("https://sugoku.herokuapp.com/board?difficulty=easy")
- board =  resp.json()['board']
  
+board =  resp.json()['board']
+ 
+
 original = [[board[i][j] for j in range(len(board[0]))] for i in range(len(board))]
- bg_color = (250,245,243)
-black = (0,0,0)
+bg_color = (250,245,243)
+marroon = (115,0,0)
+def place(window,pos):
+    Board_font = pygame.font.SysFont('Arial',30)
+    x,y = pos[1], pos[0]
+ 
+    while True:
+        for e in pygame.event.get():
 
+            if (e.type == pygame.QUIT):
+                pygame.quit()
+                return
+ 
+        
+            if e.type == pygame.KEYDOWN:
+                
+                if original[x-1][y-1]!=0: 
+                    return
+                
+                
+                if (e.key == 48): 
+                    
+                    board[x-1][y-1] = e.key-48
 
+                    pygame.draw.rect(window, bg_color, (y*50+5, x*50+5, 50-10,50-10) )
+                    pygame.display.update()
+                    return
+                
+                if(0< e.key-48 < 10): 
+                    pygame.draw.rect(window, bg_color, (y*50+5, x*50+5, 50-10,50-10) )
+                    
+                    val=Board_font.render(str(e.key-48), True, marroon)
+                    window.blit(val, (y*50 + 15,  x*50 + 5) )
+ 
+                    board[x-1][y-1]= e.key-48
+ 
+                    pygame.display.update()
+                    return
+               
+                    
+def game():
+    pygame.init()
+    window = pygame.display.set_mode((550,550))
+ 
+    pygame.display.set_caption('SuDoKu Roz')
+    window.fill(bg_color)
+ 
+    Board_font = pygame.font.SysFont('Calibri',30)
+ 
+    for i in range(0,10):
+        if i%3==0:
+
+            pygame.draw.line(window, marroon, (50+50*i,50), (50+50*i,500) , 4)
+            pygame.draw.line(window, marroon, (50,50+50*i), (500,50+50*i) , 4)
+    
+        else:
+            
+            pygame.draw.line(window, marroon, (50+50*i,50), (50+50*i,500) , 2)
+            pygame.draw.line(window, marroon, (50,50+50*i), (500,50+50*i) , 2)
+    
+    for x in range(0,len(board[0])):
+        for y in range(0,len(board[0])):
+ 
+            if(board[x][y]>0 and board[x][y]<10):
+ 
+                val = Board_font.render(str(board[x][y]), True , (100,100,200) )
+                window.blit(val,((y+1)*50 + 15,  (x+1)*50 + 5 ))
+ 
+
+    pygame.display.update()
+ 
+    while True:
+        for e in pygame.event.get():
+ 
+            
+            if e.type == pygame.MOUSEBUTTONUP and e.button == 1:
+                coordinates = pygame.mouse.get_pos()
+                place(window, (coordinates[0]//50,coordinates[1]//50))
+            
+            if (e.type == pygame.QUIT):
+                pygame.quit()
+                return
+ 
+game()
