@@ -1,1 +1,118 @@
 ##SuDoKu Solver Python File##
+##SuDoKu Solver Python File##
+
+##Sudoku Solver
+##SuDoKu Solver Python File##
+
+import pygame
+import requests
+ 
+resp = requests.get("https://sugoku.herokuapp.com/board?difficulty=easy")
+ 
+board =  resp.json()['board']
+ 
+original = [[board[i][j] for j in range(len(board[0]))] for i in range(len(board))]
+ 
+bg_color = (250,245,243)
+black = (0,0,0)
+ 
+def valid(pos, val):
+ 
+    for x in range(0,9):
+        if board[pos[0]][x] == val:
+            return False
+        
+    for x in range(0,9):
+        if board[x][pos[1]] == val:
+            return False
+ 
+    i = pos[0]//3*3
+    j = pos[1]//3*3
+        
+    for x in range(0,3):
+        for y in range(0,3):
+            if board[x+i][y+j] == val:
+                return False
+    
+    return True
+ 
+def empty(val):
+    if val==0:
+        return True
+    else:
+        return False
+ 
+complete = 0
+ 
+def solve(window):
+    global complete
+    Board_font = pygame.font.SysFont('Arial',30)
+ 
+    for x in range(0,9):
+        for y in range(0,9):
+ 
+            if(empty(board[x][y])):
+ 
+                for val in range(1,10):
+                    if( valid( (x,y) ,val) ):
+                        board[x][y]=val
+                        pygame.draw.rect(window, bg_color, ((y+1)*50+5, (1+x)*50+5, 50-10,50-10) )
+ 
+                        value=Board_font.render(str(val), True, black)
+                        window.blit(value, ((1+y)*50 + 15, (1+x)*50 + 5) )
+ 
+                        pygame.display.update()
+ 
+                        pygame.time.delay(15)
+ 
+                        solve(window)
+                        if complete == 1:
+                            return
+ 
+                        board[x][y]=0
+                        pygame.draw.rect(window, bg_color, (y*50+5, x*50+5, 50-10,50-10) )
+ 
+                        pygame.display.update()
+                return
+    complete=1
+                    
+ 
+def game():
+    pygame.init()
+ 
+    window = pygame.display.set_mode((550,550))
+ 
+    pygame.display.set_caption('Roz SuDoKu Solver')
+ 
+    window.fill(bg_color)
+ 
+    Board_font = pygame.font.SysFont('Arial',30)
+ 
+    for i in range(0,10):
+        if i%3==0:
+            pygame.draw.line(window, black, (50+50*i,50), (50+50*i,500) , 4)
+            pygame.draw.line(window, black, (50,50+50*i), (500,50+50*i) , 4)
+    
+        else:
+            pygame.draw.line(window, black, (50+50*i,50), (50+50*i,500) , 2)
+            pygame.draw.line(window, black, (50,50+50*i), (500,50+50*i) , 2)
+    
+    for x in range(0,len(board[0])):
+        for y in range(0,len(board[0])):
+ 
+            if(board[x][y]>0 and board[x][y]<10):
+ 
+                val = Board_font.render(str(board[x][y]), True , (100,100,200) )
+                window.blit(val,((y+1)*50 + 15,  (x+1)*50 + 5 ))
+ 
+    pygame.display.update()
+ 
+    solve(window)
+    while True:
+        for e in pygame.event.get():
+            
+            if (e.type == pygame.QUIT):
+                pygame.quit()
+                return
+ 
+game()
